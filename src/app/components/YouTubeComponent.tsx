@@ -7,6 +7,7 @@ const YouTubeVideo = ({ videoId }: { videoId: string }) => {
                 src={`https://www.youtube.com/embed/${videoId}`}
                 allowFullScreen
                 loading='lazy'
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             />
     );
 }
@@ -25,7 +26,7 @@ export function YouTubeComponent ({
     videoId
 }: YouTubeComponentProps) {
     return (
-        <div className="flex flex-col items-center border rounded-lg p-2">
+        <div className="flex bg-gray-200 flex-col items-center border rounded-lg p-2">
             {title && <h4 className="text-lg font-bold">{title}</h4>}
             <YouTubeVideo videoId={videoId} />
             {description && <p className="text-sm">{description}</p>}

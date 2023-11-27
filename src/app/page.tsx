@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getBlogPosts } from '@/app/db/blog'
+import { getBlogPosts } from '@/app/helpers/getBlogPosts'
 
 export default function Page() {
   let allBlogPosts = getBlogPosts();

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation';
-import { getBlogPosts } from '@/app/db/blog';
-import { formatDate } from '@/helpers/formatDate';
+import { getBlogPosts } from '@/app/helpers/getBlogPosts';
+import { formatDate } from '@/app/helpers/formatDate';
+import { CustomMDX } from '@/app/components/CustomMDX';
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     let post = getBlogPosts().find((post) => post.slug === params.slug);
@@ -10,7 +11,7 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     }
 
     let { title, date, tags } = post.metadata;
-    let ogImage = `https://leerob.io/og?title=${title}`;
+    let ogImage = `https://carlosazaustre.es/og?title=${title}`;
 
     return {
         title,
@@ -68,8 +69,8 @@ export default function Post({ params }) {
                     {formatDate(post.metadata.date)}
                 </p>
             </div>
-            <article>
-                {post.content}
+            <article className="prose prose-quoteless prose-neutral">
+                <CustomMDX source={post.content} />
             </article>
         </section>
     )
